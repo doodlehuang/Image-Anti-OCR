@@ -80,6 +80,7 @@
         var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         var img = $("output");
         img.src = canvas.toDataURL("image/png");
+        window.location.href = 'data:application/octet-stream;base64,' + img.src;
     }
 
     function random(min, max) {
