@@ -41,7 +41,7 @@
         return document.getElementById(id);
     }
     function processImg(image) {
-
+        console.log('proccessImg');
         factor = (image.height * image.width) / 32;
 
         var canvas = $('canvas');
@@ -80,13 +80,14 @@
         var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         var img = $("output");
         img.src = canvas.toDataURL("image/png");
+        canvas.toBlob(function(blob) { downloadBlob(blob) });
     }
 
     function random(min, max) {
         return Math.round(Math.random() * (max - min)) + min;
     }
     
-    function downloadBlob(blob, name = 'image.png') {
+    function downloadBlob(blob, name = 'result-' + Date.now() + '.png') {
       // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
       const blobUrl = URL.createObjectURL(blob);
 
@@ -116,6 +117,7 @@
 
 
     function showImg(input) {
+        console.log('showImg');
         var file = input.files[0];
         var reader = new FileReader()
 
@@ -133,7 +135,6 @@
             };
         }
         reader.readAsDataURL(file);
-        downloadBlob(file);
     }
 </script>
 
